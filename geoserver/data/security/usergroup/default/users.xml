@@ -2,7 +2,7 @@
 <userRegistry xmlns="http://www.geoserver.org/security/users" version="1.0">
 <users>
 <user enabled="true" name="admin" password="crypt1:9FFn3TyLqVOVFL/t+WBIudCKwQLNSlFR"/>
-<user enabled="true" name="ott" password="crypt1:1yFoObjvkDbymTEmnNmxSA=="/>
+<user enabled="true" name="ott" password="crypt1:vxP19T5y9jXi6Ehm3LSTEA=="/>
 </users>
 <groups/>
 </userRegistry>

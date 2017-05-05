@@ -10,6 +10,7 @@
 </userRoles>
 <userRoles username="ott">
 <roleRef roleID="ADMIN"/>
+<roleRef roleID="GROUP_ADMIN"/>
 </userRoles>
 </userList>
 <groupList/>
