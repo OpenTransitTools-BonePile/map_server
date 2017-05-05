@@ -1,5 +1,5 @@
 <namespace>
-  <id>NamespaceInfoImpl-OTT</id>
+  <id>OttNamespace</id>
   <prefix>ott</prefix>
   <uri>http://opentransittools.org</uri>
 </namespace>

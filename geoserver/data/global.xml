@@ -2,13 +2,13 @@
   <settings>
     <id>OttGlobalSettingsInfo</id>
     <contact>
-      <contactOrganization>OTT</contactOrganization>
-      <contactPerson>Mr. OpenTransitTools</contactPerson>
-      <contactEmail>geo@opentransittools.com</contactEmail>
       <addressCity>Portland</addressCity>
       <addressCountry>USA</addressCountry>
       <addressPostalCode>97202</addressPostalCode>
       <addressState>OR</addressState>
+      <contactEmail>geo@opentransittools.com</contactEmail>
+      <contactOrganization>OTT</contactOrganization>
+      <contactPerson>Mr. OpenTransitTools</contactPerson>
     </contact>
     <charset>UTF-8</charset>
     <numDecimals>8</numDecimals>
@@ -37,8 +37,8 @@
     <queueType>UNBOUNDED</queueType>
     <imageIOCacheThreshold>10240</imageIOCacheThreshold>
   </coverageAccess>
+  <updateSequence>0</updateSequence>
   <featureTypeCacheSize>0</featureTypeCacheSize>
   <globalServices>true</globalServices>
   <xmlPostRequestLogBufferSize>1024</xmlPostRequestLogBufferSize>
-  <updateSequence>1</updateSequence>
 </global>
