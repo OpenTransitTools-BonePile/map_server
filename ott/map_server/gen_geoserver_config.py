@@ -17,5 +17,4 @@ def generate_all():
     feed_list = gtfs_utils.get_feeds_from_config()
     for feed in feed_list:
         feed_name = gtfs_utils.get_schema_name_from_feed(feed)
-        print feed_name
-        #print stores()
+        print stores(schema=feed_name)
