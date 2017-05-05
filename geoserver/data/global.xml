@@ -1,5 +1,22 @@
 <global>
-  <contact/>
+  <settings>
+    <id>OttGlobalSettingsInfo</id>
+    <contact>
+      <contactOrganization>OTT</contactOrganization>
+      <contactPerson>Mr. OpenTransitTools</contactPerson>
+      <contactEmail>geo@opentransittools.com</contactEmail>
+      <addressCity>Portland</addressCity>
+      <addressCountry>USA</addressCountry>
+      <addressPostalCode>97202</addressPostalCode>
+      <addressState>OR</addressState>
+    </contact>
+    <charset>UTF-8</charset>
+    <numDecimals>8</numDecimals>
+    <onlineResource>http://opentransittools.org</onlineResource>
+    <verbose>false</verbose>
+    <verboseExceptions>false</verboseExceptions>
+    <localWorkspaceIncludesPrefix>false</localWorkspaceIncludesPrefix>
+  </settings>
   <jai>
     <allowInterpolation>false</allowInterpolation>
     <recycling>true</recycling>
@@ -11,11 +28,17 @@
     <pngAcceleration>false</pngAcceleration>
     <jpegAcceleration>false</jpegAcceleration>
     <allowNativeMosaic>false</allowNativeMosaic>
+    <allowNativeWarp>false</allowNativeWarp>
   </jai>
-  <charset>UTF-8</charset>
-  <numDecimals>8</numDecimals>
-  <onlineResource>http://geoserver.org</onlineResource>
-  <verbose>false</verbose>
-  <verboseExceptions>false</verboseExceptions>
-  <updateSequence>0</updateSequence>
+  <coverageAccess>
+    <maxPoolSize>5</maxPoolSize>
+    <corePoolSize>5</corePoolSize>
+    <keepAliveTime>30000</keepAliveTime>
+    <queueType>UNBOUNDED</queueType>
+    <imageIOCacheThreshold>10240</imageIOCacheThreshold>
+  </coverageAccess>
+  <featureTypeCacheSize>0</featureTypeCacheSize>
+  <globalServices>true</globalServices>
+  <xmlPostRequestLogBufferSize>1024</xmlPostRequestLogBufferSize>
+  <updateSequence>1</updateSequence>
 </global>
