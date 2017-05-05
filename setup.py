@@ -8,7 +8,6 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'ott.utils',
-    'scp'
 ]
 
 extras_require = dict(
@@ -34,7 +33,7 @@ setup(
     author_email="info@opentransittools.org",
     dependency_links=[
         'git+https://github.com/OpenTransitTools/utils.git#egg=ott.utils-0.1.0',
-\    ],
+    ],
     license="Mozilla-derived (http://opentransittools.com)",
     url='http://opentransittools.com',
     keywords='ott, otp, gtfs, gtfsdb, data, database, services, transit, geo, geoserver',
