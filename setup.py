@@ -8,6 +8,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'ott.utils',
+    'mustache'
 ]
 
 extras_require = dict(
@@ -47,6 +48,6 @@ setup(
     # find ott | grep py$ | xargs grep "def.main"
     entry_points="""
         [console_scripts]
-        load_all = ott.map_server.loader:load_all
+        generate_geoserver_config = ott.map_server.gen_geoserver_config:generate_all
     """,
 )
