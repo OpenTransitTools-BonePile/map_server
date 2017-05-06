@@ -1,14 +1,15 @@
 <featureType>
-  <id>{{schema}}-{{name}}-Feature</id>
-  <name>{{name}}</name>
+  <id>{{db_name}}-{{schema}}-{{name}}-Feature</id>
+  <name>{{schema}}_{{name}}</name>
   <nativeName>{{name}}</nativeName>
   <namespace>
     <id>OttNamespace</id>
   </namespace>
-  <title>r{{name}}</title>
+  <title>{{schema}}_{{name}}</title>
   <keywords>
     <string>features</string>
     <string>{{name}}</string>
+    <string>{{schema}}</string>
   </keywords>
   <srs>EPSG:404000</srs>
   <nativeBoundingBox>
@@ -30,7 +31,7 @@
     <entry key="cachingEnabled">false</entry>
   </metadata>
   <store class="dataStore">
-    <id>{{datastore}}</id>
+    <id>DataStore-{{db_name}}:{{schema}}</id>
   </store>
   <maxFeatures>0</maxFeatures>
   <numDecimals>0</numDecimals>
