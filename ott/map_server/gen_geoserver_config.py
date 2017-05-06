@@ -18,7 +18,12 @@ def featuretype_template(data):
 
 @template(template_dir + 'layer.mustache')
 def layer_template(data):
-    """ call the featuretype template"""
+    """ call the layer template"""
+    return data
+
+@template(template_dir + 'layergroup.mustache')
+def layergroup_template(data):
+    """ call the layergroup template"""
     return data
 
 
@@ -27,6 +32,7 @@ def get_data(db_name='ott', schema='TRIMET', user='geoserve'):
         'db_name': db_name,
         'schema': schema,
         'user':  user,
+        'store_id': "{}-{}-datastore".format(db_name, schema),
         'minx': -123.1,
         'maxx': -121.1,
         'miny': 44.0,
@@ -46,22 +52,48 @@ def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
     data['type'] = type
     data['style'] = style_id
 
-    # step 3: add layer.xml for this feature
+    # step 3: add featuretype.xml for this feature
+    data['featuretype_id'] = "{}-{}-{}-featuretype".format(data['db_name'], data['schema'], type)
+    type_path = os.path.join(feature_path, 'featuretype.xml')
+    with open(type_path, 'w+') as f:
+        content = featuretype_template(data)
+        f.write(content)
+
+    # step 4: add layer.xml for this feature
+    data['layer_id'] = "{}-{}-{}-layer".format(data['db_name'], data['schema'], type)
     layer_path = os.path.join(feature_path, 'layer.xml')
     with open(layer_path, 'w+') as f:
         content = layer_template(data)
         f.write(content)
 
-    # step 4: add featuretype.xml for this feature
-    type_path = os.path.join(feature_path, 'featuretype.xml')
-    with open(type_path, 'w+') as f:
-        content = featuretype_template(data)
+    return {'layer_id': data['layer_id'], 'style_id': style_id}
+
+
+def make_layergroup(base_dir, data, layers, type='routes'):
+    """ make routes feature folder
+    """
+    # step 1: make feature dir
+    layergroup_path = os.path.join(base_dir, 'layergroups')
+    file_utils.mkdir(layergroup_path)
+
+    # step 2: content
+    data['type'] = type
+    data['layers'] = layers
+
+    # step 3: add layer.xml for this feature
+    xml_path = os.path.join(layergroup_path, type + '.xml')
+    with open(xml_path, 'w+') as f:
+        content = layergroup_template(data)
         f.write(content)
 
 
 def generate_all(geo_workspace="geoserver/data/workspaces/ott"):
     """ gen geoserver stuff
     """
+    # lists for the layergroups.xml config
+    routes_layers = []
+    stops_layers = []
+
     feed_list = gtfs_utils.get_feeds_from_config()
     for feed in feed_list:
         # step 1: get meta data and name for this feed
@@ -79,5 +111,17 @@ def generate_all(geo_workspace="geoserver/data/workspaces/ott"):
             f.write(content)
 
         # step 4: make stop and route feature layers
-        make_feature(dir_path, data, 'routes', 'RoutesStyle')
-        make_feature(dir_path, data, 'stops',  'StopsStyle')
+        r = make_feature(dir_path, data, 'routes', 'RoutesStyle')
+        s = make_feature(dir_path, data, 'stops',  'StopsStyle')
+        routes_layers.append(r)
+        stops_layers.append(s)
+
+
+    # step 5: make inclusive layergroups
+    make_layergroup(geo_workspace, data, routes_layers, type='routes')
+    make_layergroup(geo_workspace, data, stops_layers, type='stops')
+
+    all_layers = []
+    all_layers.extend(routes_layers)
+    all_layers.extend(stops_layers)
+    make_layergroup(geo_workspace, data, all_layers, type='all')
