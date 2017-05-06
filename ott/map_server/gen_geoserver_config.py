@@ -27,9 +27,9 @@ def get_data(db_name='ott', schema='TRIMET', user='geoserve'):
         'db_name': db_name,
         'schema': schema,
         'user':  user,
-        'minx': -122.6,
-        'maxx': -122.7,
-        'miny': 44.5,
+        'minx': -123.1,
+        'maxx': -121.1,
+        'miny': 44.0,
         'maxy': 47.0,
     }
     return v
