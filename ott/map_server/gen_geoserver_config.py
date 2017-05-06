@@ -79,5 +79,5 @@ def generate_all(geo_workspace="geoserver/data/workspaces/ott"):
             f.write(content)
 
         # step 4: make stop and route feature layers
-        make_feature(dir_path, data, 'route', 'RoutesStyle')
-        make_feature(dir_path, data, 'stop',  'StopsStyle')
+        make_feature(dir_path, data, 'routes', 'RoutesStyle')
+        make_feature(dir_path, data, 'stops',  'StopsStyle')
