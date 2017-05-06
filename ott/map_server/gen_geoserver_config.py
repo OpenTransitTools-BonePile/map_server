@@ -44,7 +44,7 @@ def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
 
     # step 2: content
     data['type'] = type
-    data['style_id'] = style_id
+    data['style'] = style_id
 
     # step 3: add layer.xml for this feature
     layer_path = os.path.join(feature_path, 'layer.xml')
