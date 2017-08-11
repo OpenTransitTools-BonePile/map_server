@@ -23,13 +23,19 @@
         id: tileLayerName
     }).addTo(map);
 
-    // map popup ... current location (TODO add streetview to popup)
-    var popup = L.popup();
+    // map popup ... current location with embeded SV iframe
+    // note: better to make 'w' and 'h' dynamic based on device screen size
+    var popup = L.popup({maxWidth:600, maxHeight:600});
     function onMapClick(e) {
+        var w = 340;
+        var h = 280;
+        var coords = e.latlng.lat + ","  + e.latlng.lng;
+        var url = "https://maps.google.com/maps?output=svembed&layer=c&cbp=13,,,,&cbll=" +  coords + "&ll=" + coords + "&z=17";
+        var iframe = '<iframe scrolling="no" marginheight="0" marginwidth="0" src="' + url + '" height="' + h + 'pt" frameborder="0" width="' + w + '">';
         popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
+          .setLatLng(e.latlng)
+          .setContent(iframe)
+          .openOn(map);
     }
     map.on('click', onMapClick);
 </script>
