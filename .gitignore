@@ -7,6 +7,7 @@ lucene
 *.old
 *-old
 *.urls
+
 *.v
 *.log
 *.iml
@@ -15,6 +16,11 @@ lucene
 *.out
 *.osm
 *.pid
+geoserver-*/
+geoserver/data/workspaces/ott/
+geoserver/data/gwc*
+geoserver/data/logs
+geoserver/data/security
 call/
 call-test/
 prod/
