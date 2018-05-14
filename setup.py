@@ -8,7 +8,12 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'ott.utils',
-    'mustache'
+    'mustache',
+
+    'pyramid < 1.8',
+    'pyramid_tm',
+    'pyramid_exclog',
+    'waitress',
 ]
 
 extras_require = dict(
@@ -47,6 +52,8 @@ setup(
     test_suite="ott.map_server.tests",
     # find ott | grep py$ | xargs grep "def.main"
     entry_points="""
+        [paste.app_factory]
+        main = ott.map_server.pyramid.app:main
         [console_scripts]
         generate_geoserver_config = ott.map_server.gen_geoserver_config:generate_all
     """,
