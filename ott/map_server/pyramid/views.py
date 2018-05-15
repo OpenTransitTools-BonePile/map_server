@@ -13,16 +13,19 @@ system_err_msg = base.ServerError()
 
 
 def do_view_config(cfg):
-    cfg.add_route('map_via_stopid', '/map_via_stopid')
     cfg.add_route('map_via_stopid_url', '/map_via_stopid_url')
+    cfg.add_route('map_via_stopid', '/map_via_stopid')
+
+
+@view_config(route_name='map_via_stopid_url', renderer='string', http_cache=cache_long)
+def map_via_stopid_url(request):
+    """
+    https://maps.trimet.org/ride_ws/stop?id=2&agency=TRIMET
+    """
+    return "MY"
 
 
 @view_config(route_name='map_via_stopid', renderer='string', http_cache=cache_long)
 def map_via_stopid(request):
     return "HI"
-
-
-@view_config(route_name='map_via_stopid_url', renderer='string', http_cache=cache_long)
-def map_via_stopid_url(request):
-    return "MY"
 
