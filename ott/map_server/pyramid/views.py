@@ -13,36 +13,35 @@ log = logging.getLogger(__file__)
 cache_long = 500
 system_err_msg = base.ServerError()
 session = None
-stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={stop_id}"
+stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={}"
 
 def do_view_config(cfg):
     cfg.add_route('map_url_via_stopid', '/map_via_stopid_url')
     cfg.add_route('map_via_stopid', '/map_via_stopid')
 
 
-@view_config(route_name='map_via_stopid_url', renderer='string', http_cache=cache_long)
+@view_config(route_name='map_url_via_stopid', renderer='string', http_cache=cache_long)
 def map_url_via_stopid(request):
     """
     https://maps.trimet.org/ride_ws/stop?id=2&agency=TRIMET
     """
-
     return dao_response(ret_val)
 
 
-@view_config(route_name='map_via_stopid', renderer='string', http_cache=cache_long)
+@view_config(route_name='map_via_stopid', renderer='json', http_cache=cache_long)
 def map_via_stopid(request):
-    return "HI"
+    ret_val = get_stop(request)
+    return dao_response(ret_val)
 
 
 def get_stop(request):
-    ret_val = get_stop_from_url(stop_id)
+    ret_val = get_stop_from_url(request)
     return ret_val
 
 
 def get_stop_from_url(request):
     params = StopParamParser(request)
-    stop_id = params.
-    ret_val = web_utils.wget(stop_svc_url.format(stop_id))
+    ret_val = web_utils.get(stop_svc_url.format(params.stop_id))
     return ret_val
 
 
