@@ -33,6 +33,7 @@ def map_url_via_stopid(request):
 @view_config(route_name='map_via_stopid', renderer='string', http_cache=cache_long)
 def map_via_stopid(request):
     ret_val = get_stop(request)
+    # import pdb; pdb.set_trace()
     #return pyramid_utils.dao_response(ret_val)
     return ret_val
 

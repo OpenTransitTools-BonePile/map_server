@@ -32,7 +32,6 @@ def add_cors_headers_response_callback(event):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-
     # import pdb; pdb.set_trace()
     config = Configurator(settings=settings)
 
