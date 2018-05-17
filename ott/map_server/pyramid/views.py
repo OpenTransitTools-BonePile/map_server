@@ -5,6 +5,7 @@ from ott.utils.parse.url.geo_param_parser import SimpleGeoParamParser
 from ott.utils.parse.url.stop_param_parser import StopParamParser
 from ott.utils.dao import base
 from ott.utils import web_utils
+from ott.utils import pyramid_utils
 
 import logging
 log = logging.getLogger(__file__)
@@ -25,13 +26,13 @@ def map_url_via_stopid(request):
     """
     https://maps.trimet.org/ride_ws/stop?id=2&agency=TRIMET
     """
-    return dao_response(ret_val)
+    return pyramid_utils.dao_response(ret_val)
 
 
 @view_config(route_name='map_via_stopid', renderer='json', http_cache=cache_long)
 def map_via_stopid(request):
     ret_val = get_stop(request)
-    return dao_response(ret_val)
+    return pyramid_utils.dao_response(ret_val)
 
 
 def get_stop(request):
