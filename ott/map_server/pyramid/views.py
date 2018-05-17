@@ -16,6 +16,7 @@ system_err_msg = base.ServerError()
 session = None
 stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={}"
 
+
 def do_view_config(cfg):
     cfg.add_route('map_url_via_stopid', '/map_via_stopid_url')
     cfg.add_route('map_via_stopid', '/map_via_stopid')
@@ -29,10 +30,11 @@ def map_url_via_stopid(request):
     return pyramid_utils.dao_response(ret_val)
 
 
-@view_config(route_name='map_via_stopid', renderer='json', http_cache=cache_long)
+@view_config(route_name='map_via_stopid', renderer='string', http_cache=cache_long)
 def map_via_stopid(request):
     ret_val = get_stop(request)
-    return pyramid_utils.dao_response(ret_val)
+    #return pyramid_utils.dao_response(ret_val)
+    return ret_val
 
 
 def get_stop(request):
