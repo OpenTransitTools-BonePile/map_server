@@ -18,7 +18,7 @@ stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={}"
 
 
 def do_view_config(cfg):
-    cfg.add_route('map_url_via_stopid', '/map_via_stopid_url')
+    cfg.add_route('map_url_via_stopid', '/map_url_via_stopid')
     cfg.add_route('map_via_stopid', '/map_via_stopid')
 
 
@@ -27,7 +27,7 @@ def map_url_via_stopid(request):
     """
     https://maps.trimet.org/ride_ws/stop?id=2&agency=TRIMET
     """
-    return pyramid_utils.dao_response(ret_val)
+    return get_stop_from_url(request)
 
 
 @view_config(route_name='map_via_stopid', renderer='string', http_cache=cache_long)
@@ -44,8 +44,11 @@ def get_stop(request):
 
 
 def get_stop_from_url(request):
+    ret_val = None
     params = StopParamParser(request)
-    ret_val = web_utils.get(stop_svc_url.format(params.stop_id))
+    if params.stop_id:
+        ret_val = stop_svc_url.format(params.stop_id)
+        #ret_val = web_utils.get(stop_svc_url.format(params.stop_id))
     return ret_val
 
 
