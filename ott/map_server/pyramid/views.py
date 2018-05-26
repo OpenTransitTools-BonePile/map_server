@@ -1,8 +1,7 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 
-from ott.utils.parse.url.geo_param_parser import SimpleGeoParamParser
-from ott.utils.parse.url.stop_param_parser import StopParamParser
+from ott.utils.parse.url.geo_param_parser import StopGeoParamParser
 from ott.utils.dao import base
 from ott.utils import web_utils
 from ott.utils import json_utils
@@ -36,6 +35,7 @@ def map_url_via_stopid(request):
     """
     stop = get_stop(request)
     map_url = ""
+    map_url = StopGeoParamParser(request).__dict__
     return map_url
 
 
@@ -53,7 +53,7 @@ def get_stop(request):
 
 def get_stop_from_url(request):
     ret_val = None
-    params = StopParamParser(request)
+    params = StopGeoParamParser(request)
     if params.stop_id:
         stop_url = stop_svc_url.format(params.stop_id)
         ret_val = json_utils.stream_json(stop_url)
@@ -62,7 +62,7 @@ def get_stop_from_url(request):
 
 def get_stop_from_db(session, stop_id, agency_id=None):
     try:
-        params = StopParamParser(request)
+        params = StopGeoParamParser(request)
         ret_val = StopDao.from_stop_params(session, params)
     except NoResultFound, e:
         log.warn(e)
