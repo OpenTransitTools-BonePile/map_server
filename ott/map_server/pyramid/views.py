@@ -2,6 +2,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 
 from ott.map_server.model import stop_data
+from ott.map_server.model import stop_popup
 
 from ott.utils.parse.url.geo_param_parser import StopGeoParamParser
 from ott.utils.dao import base
@@ -32,8 +33,13 @@ def map_stop_popup(request):
     """
     params = StopGeoParamParser(request)
     stop = stop_data.get_stop(params.stop_id)
-    map_url = stop
-    return map_url
+    json = {}
+    if stop:
+        if stop.get('has_errors') is not True:
+            json = stop_popup.make_legacy_stop_popup_json(stop)
+        else:
+            json = stop
+    return json
 
 
 @view_config(route_name='map_url_via_stopid', renderer='string', http_cache=cache_long)

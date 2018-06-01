@@ -16,10 +16,9 @@ def make_legacy_stop_popup_json(stop):
     """
     make the json for stop popups on old ride.trimet.org
     """
-
     # step 1: make amenities html string
     amenities = ""
-    if stop['has_amenities'] is True:
+    if stop.get('has_amenities') is True:
         amenity_tmpl = "<li>{}</li>"
         for a in stop['amenities']:
             amenities = amenities + amenity_tmpl.format(a)
