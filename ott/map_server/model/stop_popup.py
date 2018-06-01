@@ -1,3 +1,10 @@
+from ott.utils.parse.cmdline import gtfs_cmdline
+
+import logging
+log = logging.getLogger(__file__)
+
+
+stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={}"
 
 stop_tmpl = {
     "name": "{stop_name}",
@@ -30,3 +37,13 @@ def make_stop_popup_json(stop):
     sv_link = geo_utils.sv_iframe(stop.lat, stop.lon)
 
 
+
+def main():
+    parser = gtfs_cmdline.simple_stop_route_parser()
+    cmd = parser.parse_args()
+
+    print cmd
+
+
+if __name__ == '__main__':
+    main()
