@@ -1,8 +1,10 @@
+from ott.utils import json_utils
+
 import logging
 log = logging.getLogger(__file__)
 
 
-stop_svc_url = "https://maps.trimet.org/ride_ws/stop?stop_id={}"
+stop_svc_url = "https://maps.trimet.org/ride_ws/stop?detailed&stop_id={}"
 
 
 def get_stop(stop_id, agency_id=None, session=None):
