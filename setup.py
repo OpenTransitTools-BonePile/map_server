@@ -10,7 +10,9 @@ requires = [
     'ott.utils',
     'mustache',
 
-    'pyramid < 1.8',
+    'MapProxy',
+
+    'pyramid',
     'pyramid_tm',
     'pyramid_exclog',
     'waitress',
