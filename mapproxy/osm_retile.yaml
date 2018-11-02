@@ -1,0 +1,23 @@
+services:
+  wms:
+  demo:
+
+layers:
+   - name: my_layer
+     title: WMS layer from tiles
+     sources: [mycache]
+
+caches:
+  mycache:
+    grids: [webmercator]
+    sources: [my_tile_source]
+
+sources:
+  my_tile_source:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: http://a.tile.openstreetmap.org/%(z)s/%(x)s/%(y)s.png
+
+grids:
+  webmercator:
+    base: GLOBAL_WEBMERCATOR
