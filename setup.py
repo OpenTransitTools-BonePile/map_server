@@ -11,6 +11,7 @@ requires = [
     'mustache',
 
     'MapProxy',
+    'pyproj',
 
     'pyramid',
     'pyramid_tm',
@@ -58,5 +59,7 @@ setup(
         main = ott.map_server.pyramid.app:main
         [console_scripts]
         generate_geoserver_config = ott.map_server.gen_geoserver_config:generate_all
+        mapproxy = mapproxy.script.util:main
     """,
+    #   bin/mapproxy serve-develop mapproxy/mapproxy.yaml
 )
