@@ -27,7 +27,7 @@ def layergroup_template(data):
     return data
 
 
-def get_data(db_name='ott', schema='TRIMET', user='geoserve'):
+def get_data(db_name='ott', schema='TRIMET', user='ott'):
     v = {
         'db_name': db_name,
         'schema': schema,
