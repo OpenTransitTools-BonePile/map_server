@@ -1,0 +1,23 @@
+services:
+  wms:
+  demo:
+
+layers:
+   - name: transit_layer
+     title: WMS layer from tiles
+     sources: [transit_cache]
+
+caches:
+  transit_cache:
+    grids: [webmercator]
+    sources: [transit_tile_source]
+
+sources:
+  transit_tile_source:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: http://tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+
+grids:
+  webmercator:
+    base: GLOBAL_WEBMERCATOR

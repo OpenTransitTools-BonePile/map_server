@@ -8,7 +8,7 @@ layers:
      sources: [or_aerial_cache]
 
 caches:
-  mycache:
+  or_aerial_cache:
     grids: [webmercator]
     sources: [or_tile_source]
 
@@ -18,7 +18,11 @@ sources:
     grid: GLOBAL_WEBMERCATOR
     url: http://imagery.oregonexplorer.info/arcgis/rest/services/NAIP_2016/NAIP_2016_WM/ImageServer/tile/%(z)s/%(x)s/%(y)s
 
+
 grids:
   webmercator:
     base: GLOBAL_WEBMERCATOR
+  coverage:
+    bbox: [-124.633489, 41.932309, -116.428692, 46.317422]
+    bbox_srs: 'EPSG:4326'
 

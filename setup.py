@@ -61,5 +61,5 @@ setup(
         generate_geoserver_config = ott.map_server.gen_geoserver_config:generate_all
         mapproxy = mapproxy.script.util:main
     """,
-    #   bin/mapproxy serve-develop mapproxy/mapproxy.yaml
+    #   bin/mapproxy serve-develop mapproxy/mapproxy.yaml  --address 127.0.0.1:2112 # default port is 8080
 )
