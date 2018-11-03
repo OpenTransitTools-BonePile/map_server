@@ -10,13 +10,27 @@ layers:
 caches:
   transit_cache:
     grids: [webmercator]
-    sources: [transit_tile_source]
+    sources: [base_tile, routes]
 
 sources:
-  transit_tile_source:
+  base_tile:
     type: tile
     grid: GLOBAL_WEBMERCATOR
     url: http://tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    on_error:
+      other:
+        response: transparent
+        cache: False
+
+  routes:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: https://d2dyq00q2cz8yt.cloudfront.net/%(z)s_%(x)s_%(y)s.png
+    transparent: true
+    on_error:
+      other:
+        response: transparent
+        cache: False
 
 grids:
   webmercator:
