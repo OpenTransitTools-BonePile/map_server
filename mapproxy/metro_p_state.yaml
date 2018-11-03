@@ -10,13 +10,26 @@ layers:
 caches:
   or_aerial_cache:
     grids: [webmercator]
-    sources: [or_tile_source]
+    sources: [base_tile, or_tile_source]
 
 sources:
+  base_tile:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: http://tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    on_error:
+      other:
+        response: transparent
+        cache: False
+
   or_tile_source:
     type: tile
     grid: GLOBAL_WEBMERCATOR
     url: http://imagery.oregonexplorer.info/arcgis/rest/services/NAIP_2016/NAIP_2016_WM/ImageServer/tile/%(z)s/%(x)s/%(y)s
+    on_error:
+      other:
+        response: transparent
+        cache: False
 
 
 grids:
