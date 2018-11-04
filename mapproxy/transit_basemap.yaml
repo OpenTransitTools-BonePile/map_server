@@ -3,29 +3,56 @@ services:
   demo:
 
 layers:
-   - name: transit_layer
-     title: WMS layer from tiles
-     sources: [transit_cache]
+  - name: transit
+    title: Transit Layer (Regular Rez)
+    sources: [map_cache]
+
+  - name: transit_hq
+    title: Transit Layer (HQ/Retina Rez)
+    sources: [map_hq_cache]
 
 caches:
-  transit_cache:
+  map_cache:
     grids: [webmercator]
-    sources: [base_tile, routes]
+    sources: [map_source, routes_source]
+
+  map_hq_cache:
+    grids: [webmercator_hq]
+    sources: [map_hq_source, routes_hq_source]
 
 sources:
-  base_tile:
+  map_source:
     type: tile
-    grid: GLOBAL_WEBMERCATOR
-    url: http://tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    url: http://a.tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    grid: webmercator
     on_error:
       other:
         response: transparent
         cache: True
 
-  routes:
+  routes_source:
     type: tile
-    grid: GLOBAL_WEBMERCATOR
     url: https://d2dyq00q2cz8yt.cloudfront.net/%(z)s_%(x)s_%(y)s.png
+    grid: webmercator
+    transparent: true
+    on_error:
+      other:
+        response: transparent
+        cache: True
+
+  map_hq_source:
+    type: tile
+    url: http://a.tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s%%402x.png
+    grid: webmercator_hq
+    on_error:
+      other:
+        response: transparent
+        cache: True
+
+  routes_hq_source:
+    type: tile
+    url: https://d2dyq00q2cz8yt.cloudfront.net/%(z)s_%(x)s_%(y)s%%402x.png
+    grid: webmercator_hq
     transparent: true
     on_error:
       other:
@@ -34,4 +61,12 @@ sources:
 
 grids:
   webmercator:
-    base: GLOBAL_WEBMERCATOR
+    srs: "EPSG:3857"
+    origin: nw
+    min_res: 156543.03392804097
+
+  webmercator_hq:
+    srs: "EPSG:3857"
+    origin: nw
+    min_res: 78271.51696402048
+    tile_size: [512, 512]
