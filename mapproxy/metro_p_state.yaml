@@ -12,6 +12,11 @@ caches:
     grids: [webmercator]
     sources: [base_tile, or_tile_source]
 
+    # WMS tiles you can't do have -- meta tiling
+    # https://mapproxy.org/docs/nightly/labeling.html
+    meta_size: [1, 1]
+    meta_buffer: 0
+
 sources:
   base_tile:
     type: tile
@@ -23,14 +28,15 @@ sources:
         cache: False
 
   or_tile_source:
-    type: tile
-    grid: GLOBAL_WEBMERCATOR
-    url: http://imagery.oregonexplorer.info/arcgis/rest/services/NAIP_2016/NAIP_2016_WM/ImageServer/tile/%(z)s/%(x)s/%(y)s
-    on_error:
-      other:
-        response: transparent
-        cache: False
-
+    coverage:
+      bbox: [-124.633489, 41.932309, -116.428692, 46.317422]
+      srs: EPSG:4326
+    req:
+      layers: '0'
+      transparent: true
+      url: http://imagery.oregonexplorer.info:80/arcgis/services/NAIP_2016/NAIP_2016_WM/ImageServer/WMSServer
+    supported_srs: ['EPSG:3857', 'EPSG:4326']
+    type: wms
 
 grids:
   webmercator:
