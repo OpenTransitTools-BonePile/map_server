@@ -20,7 +20,7 @@ sources:
     on_error:
       other:
         response: transparent
-        cache: False
+        cache: True
 
   routes:
     type: tile
@@ -30,7 +30,7 @@ sources:
     on_error:
       other:
         response: transparent
-        cache: False
+        cache: True
 
 grids:
   webmercator:
