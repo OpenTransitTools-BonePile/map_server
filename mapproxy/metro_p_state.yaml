@@ -1,6 +1,7 @@
 services:
   wms:
   demo:
+  tms:
 
 layers:
    - name: metro_state_aerials
@@ -10,7 +11,7 @@ layers:
 caches:
   or_aerial_cache:
     grids: [webmercator]
-    sources: [base_tile, or_tile_source]
+    sources: [base_tile, or_tile_source, metro_wms]
 
     # WMS tiles you can't do have -- meta tiling
     # https://mapproxy.org/docs/nightly/labeling.html
@@ -33,9 +34,20 @@ sources:
       srs: EPSG:4326
     req:
       layers: '0'
-      transparent: true
+      transparent: false
       url: http://imagery.oregonexplorer.info:80/arcgis/services/NAIP_2016/NAIP_2016_WM/ImageServer/WMSServer
     supported_srs: ['EPSG:3857', 'EPSG:4326']
+    type: wms
+
+  metro_wms:
+    coverage:
+      bbox: [-123.29985, 45.258788, -122.331014, 45.663872]
+      srs: EPSG:4326
+    req:
+      layers: '0'
+      transparent: true
+      url: https://gis.oregonmetro.gov/arcgis/services/photo/aerialphoto/MapServer/WmsServer?token=<TOKEN>&
+    supported_srs: ['EPSG:102100', 'EPSG:3857', 'EPSG:4326']
     type: wms
 
 grids:
