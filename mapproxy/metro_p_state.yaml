@@ -1,7 +1,8 @@
 services:
-  wms:
   demo:
   tms:
+    use_grid_names: true
+    origin: 'nw'
 
 layers:
    - name: metro_state_aerials
@@ -46,9 +47,12 @@ sources:
     req:
       layers: '0'
       transparent: true
-      url: https://gis.oregonmetro.gov/arcgis/services/photo/aerialphoto/MapServer/WmsServer?token=<TOKEN>&
-    supported_srs: ['EPSG:102100', 'EPSG:3857', 'EPSG:4326']
+      url: https://gis.oregonmetro.gov/arcgis/services/photo/aerialphoto/MapServer/WmsServer?token=
+    supported_srs: ['EPSG:3857', 'EPSG:4326']
     type: wms
+    image:
+      transparent_color: '#ff0000'
+      transparent_color_tolerance: 0
 
 grids:
   webmercator:
