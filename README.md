@@ -14,3 +14,7 @@ install:
 
 run:
   1. scripts/run.sh
+
+
+Avoid checking <tokens> in: git update-index --assume-unchanged mapproxy/metro_p_state.yaml
+  
