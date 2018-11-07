@@ -1,2 +1,4 @@
-nohup bin/mapproxy serve-develop -b :18080 mapproxy/transit_basemap.yaml &
-nohup bin/mapproxy serve-develop -b :28080 mapproxy/metro_p_state.yaml &
+rm nohup.out
+rm -rf mapproxy/cache_data
+nohup bin/mapproxy serve-develop -b :18080 mapproxy/basemap_map.yaml &
+nohup bin/mapproxy serve-develop -b :28080 mapproxy/basemap_aerial.yaml &

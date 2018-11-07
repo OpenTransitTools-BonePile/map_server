@@ -16,14 +16,14 @@ services:
 layers:
   - name: aerial
     title: Aerial Layer (Regular Rez)
-    sources: [map_cache]
+    sources: [aerial_cache]
 
   - name: aerial_hq
     title: Aerial Layer (HQ/Retina Rez)
-    sources: [map_hq_cache]
+    sources: [aerial_hq_cache]
 
 caches:
-  map_cache:
+  aerial_cache:
     grids: [webmercator]
     sources: [map_source, or_wms, metro_wms]
 
@@ -32,7 +32,7 @@ caches:
     meta_size: [1, 1]
     meta_buffer: 0
 
-  map_hq_cache:
+  aerial_hq_cache:
     grids: [webmercator_hq]
     sources: [map_hq_source, or_wms, metro_wms]
 
