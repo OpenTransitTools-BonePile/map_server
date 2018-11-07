@@ -1,7 +1,9 @@
 #
 # aerial map tiles
 #
-
+#
+#
+#
 services:
   demo:
   wmts:
@@ -10,31 +12,43 @@ services:
     kvp: true
 
 layers:
-   - name: metro_state_aerials
-     title: OR Aerial Tiles
-     sources: [or_aerial_cache]
+  - name: aerial
+    title: Aerial Layer (Regular Rez)
+    sources: [map_cache]
+
+  - name: aerial_hq
+    title: Aerial Layer (HQ/Retina Rez)
+    sources: [map_hq_cache]
 
 caches:
-  or_aerial_cache:
+  map_cache:
     grids: [webmercator]
-    sources: [base_tile, or_tile_source, metro_wms]
+    sources: [map_source, or_wms, metro_wms]
 
-    # WMS tiles you can't do have -- meta tiling
-    # https://mapproxy.org/docs/nightly/labeling.html
-    meta_size: [1, 1]
-    meta_buffer: 0
+  map_hq_cache:
+    grids: [webmercator_hq]
+    sources: [map_hq_source, or_wms, metro_wms]
 
 sources:
-  base_tile:
+  map_source:
     type: tile
-    grid: GLOBAL_WEBMERCATOR
-    url: http://tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    url: http://a.tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s.png
+    grid: webmercator
     on_error:
       other:
         response: transparent
         cache: True
 
-  or_tile_source:
+  map_hq_source:
+    type: tile
+    url: http://a.tile.stamen.com/toner-lite/%(z)s/%(x)s/%(y)s%%402x.png
+    grid: webmercator_hq
+    on_error:
+      other:
+        response: transparent
+        cache: True
+
+  or_wms:
     coverage:
       bbox: [-124.633489, 41.932309, -116.428692, 46.317422]
       srs: EPSG:4326
@@ -61,8 +75,12 @@ sources:
 
 grids:
   webmercator:
-    base: GLOBAL_WEBMERCATOR
+    srs: "EPSG:3857"
     origin: nw
-  coverage:
-    bbox: [-124.633489, 41.932309, -116.428692, 46.317422]
-    bbox_srs: 'EPSG:4326'
+    min_res: 156543.03392804097
+
+  webmercator_hq:
+    srs: "EPSG:3857"
+    origin: nw
+    min_res: 78271.51696402048
+    tile_size: [512, 512]
