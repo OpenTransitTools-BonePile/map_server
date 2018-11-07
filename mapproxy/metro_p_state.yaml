@@ -1,8 +1,10 @@
 #
 # aerial map tiles
 #
+# http://localhost:8080/demo/
 #
-#
+# http://localhost:8080/wmts/aerial-webmercator/17/20878/46910.png
+# http://localhost:8080/wmts/aerial_hq-webmercator_hq/17/20878/46910.png
 #
 services:
   demo:
@@ -25,9 +27,19 @@ caches:
     grids: [webmercator]
     sources: [map_source, or_wms, metro_wms]
 
+    # WMS tiles you can't do have -- meta tiling
+    # https://mapproxy.org/docs/nightly/labeling.html
+    meta_size: [1, 1]
+    meta_buffer: 0
+
   map_hq_cache:
     grids: [webmercator_hq]
     sources: [map_hq_source, or_wms, metro_wms]
+
+    # WMS tiles you can't do have -- meta tiling
+    # https://mapproxy.org/docs/nightly/labeling.html
+    meta_size: [1, 1]
+    meta_buffer: 0
 
 sources:
   map_source:
