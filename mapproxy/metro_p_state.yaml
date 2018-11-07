@@ -1,8 +1,9 @@
 services:
   demo:
-  tms:
-    use_grid_names: true
-    origin: 'nw'
+  wmts:
+    restful: true
+    restful_template: '/{Layer}-{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.{Format}'
+    kvp: true
 
 layers:
    - name: metro_state_aerials
@@ -57,6 +58,7 @@ sources:
 grids:
   webmercator:
     base: GLOBAL_WEBMERCATOR
+    origin: nw
   coverage:
     bbox: [-124.633489, 41.932309, -116.428692, 46.317422]
     bbox_srs: 'EPSG:4326'
