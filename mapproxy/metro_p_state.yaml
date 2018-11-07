@@ -1,3 +1,7 @@
+#
+# aerial map tiles
+#
+
 services:
   demo:
   wmts:
