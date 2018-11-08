@@ -34,7 +34,7 @@ def set_tokens(name='token'):
     tok = cfg.get(name, section="metro")
     if tok:
         dir = file_utils.get_file_dir(__file__)
-        template_utils.apply_kv_to_files(key=name, value=tok, dir_path=dir, ext=".yaml")
+        template_utils.apply_kv_to_files(key=name, value=tok, dir_path=dir, ext=".yaml", rewrite=True)
 
 
 if __name__ == '__main__':
