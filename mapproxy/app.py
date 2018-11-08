@@ -36,3 +36,5 @@ def set_tokens(name='token'):
         template_utils.apply_kv_to_files(key=name, value=dir, ext=".yaml")
 
 
+if __name__ == '__main__':
+    set_tokens()
