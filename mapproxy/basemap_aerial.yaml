@@ -78,7 +78,7 @@ sources:
     req:
       layers: '0'
       transparent: true
-      url: https://gis.oregonmetro.gov/arcgis/services/photo/aerialphoto/MapServer/WmsServer?token=
+      url: https://gis.oregonmetro.gov/arcgis/services/photo/aerialphoto/MapServer/WmsServer?token=${token}
     supported_srs: ['EPSG:3857', 'EPSG:4326']
     type: wms
     image:

@@ -11,6 +11,9 @@
 
 import argparse
 from mapproxy.wsgiapp import make_wsgi_app
+from ott.utils import file_utils
+from ott.utils import template_utils
+from ott.utils.config_util import ConfigUtil
 
 
 def make_app(port='', config=''):
@@ -25,9 +28,11 @@ def make_args():
     return args
 
 
-
-
-
-
+def set_tokens(name='token'):
+    cfg = ConfigUtil(ini="mapproxy.ini")
+    tok = cfg.get(name)
+    if tok:
+        dir = file_utils.get_file_dir(__file__)
+        template_utils.apply_kv_to_files(key=name, value=dir, ext=".yaml")
 
 
