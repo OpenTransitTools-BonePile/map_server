@@ -29,8 +29,8 @@ def make_args():
 
 
 def set_tokens(name='token'):
+    # import pdb; pdb.set_trace()
     cfg = ConfigUtil(ini="mapproxy.ini")
-    import pdb; pdb.set_trace()
     tok = cfg.get(name, section="metro")
     if tok:
         dir = file_utils.get_file_dir(__file__)
