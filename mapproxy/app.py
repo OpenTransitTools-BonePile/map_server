@@ -30,10 +30,11 @@ def make_args():
 
 def set_tokens(name='token'):
     cfg = ConfigUtil(ini="mapproxy.ini")
-    tok = cfg.get(name)
+    import pdb; pdb.set_trace()
+    tok = cfg.get(name, section="metro")
     if tok:
         dir = file_utils.get_file_dir(__file__)
-        template_utils.apply_kv_to_files(key=name, value=dir, ext=".yaml")
+        template_utils.apply_kv_to_files(key=name, value=tok, dir_path=dir, ext=".yaml")
 
 
 if __name__ == '__main__':
