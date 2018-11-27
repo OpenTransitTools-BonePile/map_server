@@ -25,7 +25,7 @@ def get_stop_from_url(stop_id, agency_id):
 def get_stop_from_db(session, stop_id, agency_id=None):
     try:
         ret_val = StopDao.from_stop_id(session, stop_id)
-    except NoResultFound, e:
+    except NoResultFound as e:
         log.warn(e)
         ret_val = data_not_found
     except Exception as e:

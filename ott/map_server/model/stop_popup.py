@@ -1,4 +1,3 @@
-
 from ott.utils import geo_utils
 from ott.utils.parse.cmdline import gtfs_cmdline
 
@@ -70,7 +69,7 @@ def main():
     cmd = parser.parse_args()
     stop = stop_data.get_stop(cmd.stop_id, cmd.agency_id)
     json = make_legacy_stop_popup_json(stop)
-    print json
+    print(json)
 
 
 if __name__ == '__main__':
