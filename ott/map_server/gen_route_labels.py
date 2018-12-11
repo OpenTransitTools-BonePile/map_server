@@ -1,3 +1,8 @@
+"""
+Creates small png images, which can be used to label transit routes, based on data from a GTFS feed.
+Originally written by Tom Lin - 2018.
+"""
+
 from PIL import Image, ImageDraw, ImageFont
 import urllib2
 import csv
