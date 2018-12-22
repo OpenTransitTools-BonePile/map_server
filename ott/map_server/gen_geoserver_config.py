@@ -6,20 +6,24 @@ from ott.utils import file_utils
 
 template_dir = 'ott/map_server/templates/'
 
+
 @template(template_dir + 'stores.mustache')
 def datastore_template(data):
     """ call the stores template"""
     return data
+
 
 @template(template_dir + 'featuretype.mustache')
 def featuretype_template(data):
     """ call the featuretype template"""
     return data
 
+
 @template(template_dir + 'layer.mustache')
 def layer_template(data):
     """ call the layer template"""
     return data
+
 
 @template(template_dir + 'layergroup.mustache')
 def layergroup_template(data):
@@ -111,8 +115,8 @@ def generate_all(geo_workspace="geoserver/data/workspaces/ott"):
             f.write(content)
 
         # step 4: make stop and route feature layers
-        r = make_feature(dir_path, data, 'routes', 'RoutesStyle')
-        s = make_feature(dir_path, data, 'stops',  'StopsStyle')
+        r = make_feature(dir_path, data, 'routes', 'RoutesCssStyle')
+        s = make_feature(dir_path, data, 'stops',  'StopsCssStyle')
         routes_layers.append(r)
         stops_layers.append(s)
 
