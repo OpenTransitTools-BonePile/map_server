@@ -1,0 +1,7 @@
+* {
+    mark: symbol(circle);
+    mark-size: 6px;
+    :mark {
+        fill: #ff6600;
+    }
+}
