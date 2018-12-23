@@ -1,16 +1,16 @@
 [@scale < 100000]
-[stop_code <> ''][location_type = '0']  {
+[location_type = '0']  {
     mark: symbol(circle);
     mark-size: 6px;
     :mark {
-        fill: black;
-        stroke: orange;
+        stroke: black;
+        fill: whitesmoke;
     }
 }
 
 
 [@scale > 100000]
-[stop_code <> ''][location_type = '0']  {
+[location_type = '0']  {
     mark: symbol(circle);
     mark-size: 9px;
     :mark {

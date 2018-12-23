@@ -1,5 +1,6 @@
 <style>
   <id>RoutesCssStyle</id>
   <name>routes</name>
+  <format>css</format>
   <filename>routes.css</filename>
 </style>
