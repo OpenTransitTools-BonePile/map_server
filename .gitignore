@@ -18,6 +18,7 @@ cache_data
 *.osm
 *.pid
 *.sld
+**/styles/*.xml
 geoserver-*/
 geoserver/data/workspaces/ott/
 geoserver/data/gwc*

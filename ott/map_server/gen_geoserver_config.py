@@ -13,6 +13,12 @@ def datastore_template(data):
     return data
 
 
+@template(template_dir + 'style_config.mustache')
+def style_config_template(data):
+    """ call the style config template"""
+    return data
+
+
 @template(template_dir + 'featuretype.mustache')
 def featuretype_template(data):
     """ call the featuretype template"""
