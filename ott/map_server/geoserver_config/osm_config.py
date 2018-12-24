@@ -4,6 +4,8 @@ from .base import *
 def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
     """ gen geoserver stuff
     """
+    layer_group = []
+
     # step 1: make the datastore directory
     dir_path = os.path.join(workspace, db)
     file_utils.mkdir(dir_path)
@@ -15,27 +17,33 @@ def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
         content = datastore_template(data)
         f.write(content)
 
-    # step 2: make layers
+    # step 3: make layers
     osm_layers = [
-        {'layer': 'amenity',       'style': 'amenity'},
-        {'layer': 'boundary',      'style': 'boundary'},
-        {'layer': 'buildings',     'style': 'buildings'},
-        {'layer': 'country',       'style': 'country'},
-        {'layer': 'county',        'style': 'county'},
-        {'layer': 'district',      'style': 'district'},
-        {'layer': 'forestpark',    'style': 'forestpark'},
-        {'layer': 'lakes',         'style': 'lakes'},
-        {'layer': 'minor_roads',   'style': 'minor_roads'},
-        {'layer': 'motorway',      'style': 'motorway'},
-        {'layer': 'pedestrian',    'style': 'pedestrian'},
-        {'layer': 'rails',         'style': 'rails'},
-        {'layer': 'roads',         'style': 'roads'},
-        {'layer': 'settlements',   'style': 'settlements'},
-        {'layer': 'subdistrict',   'style': 'subdistrict'},
-        {'layer': 'trunk_primary', 'style': 'trunk_primary'},
-        {'layer': 'water',         'style': 'water'},
-        {'layer': 'waterway',      'style': 'waterway'},
-    ]
+        "water",
+        "waterway",
+        "lakes",
 
+        "forestpark",
+
+        "boundary",
+        "settlements",
+        "subdistrict",
+        "country",
+        "county",
+        "district",
+
+        "rails",
+        "minor_roads",
+        "trunk_primary",
+        "motorway",
+        "roads",
+        "pedestrian",
+
+        "buildings",
+        "amenity",
+    ]
     for l in osm_layers:
-        r = make_feature(dir_path, data, l['layer'], l['style'].capitalize() + 'CssStyle')
+        r = make_feature(dir_path, data, l, l.capitalize() + 'CssStyle')
+        layer_group.append(r)
+
+    make_layergroup(dir_path, data, layer_group, type_name='map')
