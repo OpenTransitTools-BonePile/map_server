@@ -89,6 +89,8 @@ def get_data(db_name='ott', schema='TRIMET', user='ott'):
         'db_name': db_name,
         'schema': schema,
         'user':  user,
+        'namespace': schema.capitalize() + 'Namespace',
+        'workspace': schema.capitalize() + 'Workspace',
         'store_id': "{}-{}-datastore".format(db_name, schema),
         'minx': -123.1,
         'maxx': -121.1,
