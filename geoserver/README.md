@@ -13,5 +13,8 @@ install:
   1. cd geoserver/bin
   1. sh startup.sh 
 
+osm tables:
+  echo `psql -d osm -qAntc "select table_name from information_schema.tables where table_schema = 'osm';" | sort`
+
 run:
   1. scripts/run.sh
