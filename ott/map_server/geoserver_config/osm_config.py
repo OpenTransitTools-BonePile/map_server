@@ -1,7 +1,7 @@
 from .base import *
 
 
-def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
+def generate(workspace="geoserver/data/workspaces/osm", db="osm", gen_layergroup=True):
     """ gen geoserver stuff
     """
     layer_group = []
@@ -46,4 +46,5 @@ def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
         r = make_feature(dir_path, data, l, l.capitalize() + 'CssStyle')
         layer_group.append(r)
 
-    make_layergroup(dir_path, data, layer_group, type_name='map')
+    if gen_layergroup:
+        make_layergroup(dir_path, data, layer_group, type_name='map')

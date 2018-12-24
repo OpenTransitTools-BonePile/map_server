@@ -2,7 +2,7 @@ from ott.utils import gtfs_utils
 from .base import *
 
 
-def generate(geo_workspace="geoserver/data/workspaces/ott"):
+def generate(geo_workspace="geoserver/data/workspaces/ott", gen_layergroup=True):
     """ gen geoserver stuff
     """
     # lists for the layergroups.xml config
@@ -33,10 +33,11 @@ def generate(geo_workspace="geoserver/data/workspaces/ott"):
 
 
     # step 5: make inclusive layergroups
-    make_layergroup(geo_workspace, data, routes_layers, type_name='routes')
-    make_layergroup(geo_workspace, data, stops_layers, type_name='stops')
+    if gen_layergroup:
+        make_layergroup(geo_workspace, data, routes_layers, type_name='routes')
+        make_layergroup(geo_workspace, data, stops_layers, type_name='stops')
 
-    all_layers = []
-    all_layers.extend(routes_layers)
-    all_layers.extend(stops_layers)
-    make_layergroup(geo_workspace, data, all_layers, type_name='all')
+        all_layers = []
+        all_layers.extend(routes_layers)
+        all_layers.extend(stops_layers)
+        make_layergroup(geo_workspace, data, all_layers, type_name='routes_n_stops')

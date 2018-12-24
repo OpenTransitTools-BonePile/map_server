@@ -1,6 +1,7 @@
 import os
 from mustache import template
 from ott.utils import file_utils
+from ott.utils.parse.cmdline import osm_cmdline
 
 
 template_dir = 'ott/map_server/geoserver_config/templates/'
@@ -102,9 +103,11 @@ def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True):
 
 
 def generate_geoserver_config():
+    args = osm_cmdline.geoserver_parser()
+
     from . import osm_config
     from . import style_config
     from . import transit_config
-    transit_config.generate()
+    transit_config.generate(gen_layergroup=not args.ignore_layergroups)
     style_config.generate()
-    osm_config.generate()
+    osm_config.generate(gen_layergroup=not args.ignore_layergroups)
