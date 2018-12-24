@@ -19,11 +19,12 @@ def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
 
     # step 3: make layers
     osm_layers = [
+        "forestpark",
+        "amenity",
+
         "water",
         "waterway",
         "lakes",
-
-        "forestpark",
 
         "boundary",
         "settlements",
@@ -33,14 +34,13 @@ def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
         "district",
 
         "rails",
-        "minor_roads",
         "trunk_primary",
         "motorway",
-        "roads",
         "pedestrian",
+        "minor_roads",
+        "roads",
 
         "buildings",
-        "amenity",
     ]
     for l in osm_layers:
         r = make_feature(dir_path, data, l, l.capitalize() + 'CssStyle')
