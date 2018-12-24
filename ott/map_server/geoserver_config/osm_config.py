@@ -23,22 +23,22 @@ def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
         "amenity",
 
         "water",
-        "waterway",
         "lakes",
+        "waterway",
 
         "boundary",
         "settlements",
         "subdistrict",
+        "district",
         "country",
         "county",
-        "district",
 
         "rails",
-        "trunk_primary",
         "motorway",
         "pedestrian",
         "minor_roads",
         "roads",
+        "trunk_primary",
 
         "buildings",
     ]
