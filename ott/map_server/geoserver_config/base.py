@@ -36,27 +36,27 @@ def layergroup_template(data):
     return data
 
 
-def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
+def make_feature(base_dir, data, type_name, style_id):
     """
     make routes feature folder
     """
     # step 1: make feature dir
-    feature_path = os.path.join(base_dir, type)
+    feature_path = os.path.join(base_dir, type_name)
     file_utils.mkdir(feature_path)
 
     # step 2: content
-    data['type'] = type
+    data['type'] = type_name
     data['style'] = style_id
 
     # step 3: add featuretype.xml for this feature
-    data['featuretype_id'] = "{}-{}-{}-featuretype".format(data['db_name'], data['schema'], type)
+    data['featuretype_id'] = "{}-{}-{}-featuretype".format(data['db_name'], data['schema'], type_name)
     type_path = os.path.join(feature_path, 'featuretype.xml')
     with open(type_path, 'w+') as f:
         content = featuretype_template(data)
         f.write(content)
 
     # step 4: add layer.xml for this feature
-    data['layer_id'] = "{}-{}-{}-layer".format(data['db_name'], data['schema'], type)
+    data['layer_id'] = "{}-{}-{}-layer".format(data['db_name'], data['schema'], type_name)
     layer_path = os.path.join(feature_path, 'layer.xml')
     with open(layer_path, 'w+') as f:
         content = layer_template(data)
@@ -65,7 +65,7 @@ def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
     return {'layer_id': data['layer_id'], 'style_id': style_id}
 
 
-def make_layergroup(base_dir, data, layers, type='routes'):
+def make_layergroup(base_dir, data, layers, type_name):
     """
     make layergroup
     """
@@ -74,11 +74,11 @@ def make_layergroup(base_dir, data, layers, type='routes'):
     file_utils.mkdir(layergroup_path)
 
     # step 2: content
-    data['type'] = type
+    data['type'] = type_name
     data['layers'] = layers
 
     # step 3: add layer.xml for this feature
-    xml_path = os.path.join(layergroup_path, type + '.xml')
+    xml_path = os.path.join(layergroup_path, type_name + '.xml')
     with open(xml_path, 'w+') as f:
         content = layergroup_template(data)
         f.write(content)
@@ -99,8 +99,9 @@ def get_data(db_name='ott', schema='TRIMET', user='ott'):
 
 
 def generate_geoserver_config():
+    from . import osm_config
     from . import style_config
     from . import transit_config
-
     transit_config.generate()
     style_config.generate()
+    osm_config.generate()

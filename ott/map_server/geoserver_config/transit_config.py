@@ -33,10 +33,10 @@ def generate(geo_workspace="geoserver/data/workspaces/ott"):
 
 
     # step 5: make inclusive layergroups
-    make_layergroup(geo_workspace, data, routes_layers, type='routes')
-    make_layergroup(geo_workspace, data, stops_layers, type='stops')
+    make_layergroup(geo_workspace, data, routes_layers, type_name='routes')
+    make_layergroup(geo_workspace, data, stops_layers, type_name='stops')
 
     all_layers = []
     all_layers.extend(routes_layers)
     all_layers.extend(stops_layers)
-    make_layergroup(geo_workspace, data, all_layers, type='all')
+    make_layergroup(geo_workspace, data, all_layers, type_name='all')

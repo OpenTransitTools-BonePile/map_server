@@ -4,35 +4,34 @@ from .base import *
 def generate(workspace="geoserver/data/workspaces/osm"):
     """ gen geoserver stuff
     """
+    # step 1: make the datastore config for the OSM source
+    ds_path = os.path.join(workspace, 'datastore.xml')
+    data = get_data('osm', 'osm')
+    with open(ds_path, 'w+') as f:
+        content = datastore_template(data)
+        f.write(content)
+
+    # step 2: make layers
     osm_layers = [
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
-        {'layer': '', 'style': ''},
+        {'layer': 'amenity',       'style': 'amenity'},
+        {'layer': 'boundary',      'style': 'boundary'},
+        {'layer': 'buildings',     'style': 'buildings'},
+        {'layer': 'country',       'style': 'country'},
+        {'layer': 'county',        'style': 'county'},
+        {'layer': 'district',      'style': 'district'},
+        {'layer': 'forestpark',    'style': 'forestpark'},
+        {'layer': 'lakes',         'style': 'lakes'},
+        {'layer': 'minor_roads',   'style': 'minor_roads'},
+        {'layer': 'motorway',      'style': 'motorway'},
+        {'layer': 'pedestrian',    'style': 'pedestrian'},
+        {'layer': 'rails',         'style': 'rails'},
+        {'layer': 'roads',         'style': 'roads'},
+        {'layer': 'settlements',   'style': 'settlements'},
+        {'layer': 'subdistrict',   'style': 'subdistrict'},
+        {'layer': 'trunk_primary', 'style': 'trunk_primary'},
+        {'layer': 'water',         'style': 'water'},
+        {'layer': 'waterway',      'style': 'waterway'},
     ]
 
-
     for l in osm_layers:
-        # step 1: make the datastore config for the OSM source
-        ds_path = os.path.join(workspace, 'datastore.xml')
-        with open(ds_path, 'w+') as f:
-            content = datastore_template(data)
-            f.write(content)
-
-        # step 4: make stop and route feature layers
-        r = make_feature(dir_path, data, 'routes', 'RoutesCssStyle')
-        s = make_feature(dir_path, data, 'stops',  'StopsCssStyle')
-
-
-    # step 5: make inclusive layergroups
-    make_layergroup(geo_workspace, data, routes_layers, type='routes')
-    make_layergroup(geo_workspace, data, stops_layers, type='stops')
-
-    all_layers = []
-    all_layers.extend(routes_layers)
-    all_layers.extend(stops_layers)
-    make_layergroup(geo_workspace, data, all_layers, type='all')
+        r = make_feature(workspace, data, l['layer'], l['style'].capitalize() + 'CssStyle')
