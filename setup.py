@@ -58,10 +58,9 @@ setup(
         [paste.app_factory]
         main = ott.map_server.pyramid.app:main
         [console_scripts]
-        generate_geoserver_config = ott.map_server.gen_geoserver_config:generate_all
-        generate_geoserver_styles = ott.map_server.gen_geoserver_styles:generate_all
+        generate_geoserver_config = ott.map_server.geoserver_config.gen_geoserver_config:generate_all
+        generate_geoserver_styles = ott.map_server.geoserver_config.gen_geoserver_styles:generate_all
         mapproxy = mapproxy.script.util:main
-        
     """,
     #   bin/mapproxy serve-develop mapproxy/mapproxy.yaml  --address 127.0.0.1:2112 # default port is 8080
 )

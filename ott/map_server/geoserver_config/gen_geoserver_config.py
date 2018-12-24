@@ -4,7 +4,7 @@ from ott.utils import gtfs_utils
 from ott.utils import file_utils
 
 
-template_dir = 'ott/map_server/templates/'
+template_dir = 'ott/map_server/geoserver_config/templates/'
 
 
 @template(template_dir + 'stores.mustache')
