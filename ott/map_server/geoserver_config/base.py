@@ -96,6 +96,7 @@ def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True):
         'maxx': -121.1 if is_LatLon else -13480790.34,
         'miny':   44.0 if is_LatLon else   5465442.18,
         'maxy':   47.0 if is_LatLon else   5942074.07,
+        'epsg':   4326 if is_LatLon else 3857
     }
     return v
 
