@@ -1,8 +1,9 @@
+from .base import *
 
-def generate_all(data_dir="geoserver/data"):
+
+def generate(data_dir="geoserver/data"):
     """ gen geoserver stuff
     """
-    from .gen_geoserver_config import *
 
     # import pdb; pdb.set_trace()
     for type in ['osm', 'ott']:

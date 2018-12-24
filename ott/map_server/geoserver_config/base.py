@@ -1,6 +1,5 @@
 import os
 from mustache import template
-from ott.utils import gtfs_utils
 from ott.utils import file_utils
 
 
@@ -37,22 +36,9 @@ def layergroup_template(data):
     return data
 
 
-def get_data(db_name='ott', schema='TRIMET', user='ott'):
-    v = {
-        'db_name': db_name,
-        'schema': schema,
-        'user':  user,
-        'store_id': "{}-{}-datastore".format(db_name, schema),
-        'minx': -123.1,
-        'maxx': -121.1,
-        'miny': 44.0,
-        'maxy': 47.0,
-    }
-    return v
-
-
 def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
-    """ make routes feature folder
+    """
+    make routes feature folder
     """
     # step 1: make feature dir
     feature_path = os.path.join(base_dir, type)
@@ -80,7 +66,8 @@ def make_feature(base_dir, data, type='routes', style_id='RoutesStyle'):
 
 
 def make_layergroup(base_dir, data, layers, type='routes'):
-    """ make routes feature folder
+    """
+    make layergroup
     """
     # step 1: make feature dir
     layergroup_path = os.path.join(base_dir, 'layergroups')
@@ -97,41 +84,23 @@ def make_layergroup(base_dir, data, layers, type='routes'):
         f.write(content)
 
 
-def generate_all(geo_workspace="geoserver/data/workspaces/ott"):
-    """ gen geoserver stuff
-    """
-    # lists for the layergroups.xml config
-    routes_layers = []
-    stops_layers = []
-
-    feed_list = gtfs_utils.get_feeds_from_config()
-    for feed in feed_list:
-        # step 1: get meta data and name for this feed
-        schema_name = gtfs_utils.get_schema_name_from_feed(feed)
-        data = get_data(schema=schema_name)
-
-        # step 2: make datasource folder for each schema
-        dir_path = os.path.join(geo_workspace, schema_name)
-        file_utils.mkdir(dir_path)
-
-        # step 3: make the datastore config for the source
-        ds_path = os.path.join(dir_path, 'datastore.xml')
-        with open(ds_path, 'w+') as f:
-            content = datastore_template(data)
-            f.write(content)
-
-        # step 4: make stop and route feature layers
-        r = make_feature(dir_path, data, 'routes', 'RoutesCssStyle')
-        s = make_feature(dir_path, data, 'stops',  'StopsCssStyle')
-        routes_layers.append(r)
-        stops_layers.append(s)
+def get_data(db_name='ott', schema='TRIMET', user='ott'):
+    v = {
+        'db_name': db_name,
+        'schema': schema,
+        'user':  user,
+        'store_id': "{}-{}-datastore".format(db_name, schema),
+        'minx': -123.1,
+        'maxx': -121.1,
+        'miny': 44.0,
+        'maxy': 47.0,
+    }
+    return v
 
 
-    # step 5: make inclusive layergroups
-    make_layergroup(geo_workspace, data, routes_layers, type='routes')
-    make_layergroup(geo_workspace, data, stops_layers, type='stops')
+def generate_geoserver_config():
+    from . import style_config
+    from . import transit_config
 
-    all_layers = []
-    all_layers.extend(routes_layers)
-    all_layers.extend(stops_layers)
-    make_layergroup(geo_workspace, data, all_layers, type='all')
+    transit_config.generate()
+    style_config.generate()
