@@ -1,12 +1,16 @@
 from .base import *
 
 
-def generate(workspace="geoserver/data/workspaces/osm"):
+def generate(workspace="geoserver/data/workspaces/osm", db="osm"):
     """ gen geoserver stuff
     """
-    # step 1: make the datastore config for the OSM source
-    ds_path = os.path.join(workspace, 'datastore.xml')
-    data = get_data('osm', 'osm')
+    # step 1: make the datastore directory
+    dir_path = os.path.join(workspace, db)
+    file_utils.mkdir(dir_path)
+
+    # step 2: make the datastore config
+    ds_path = os.path.join(dir_path, 'datastore.xml')
+    data = get_data('osm', 'osm', is_LatLon=False)
     with open(ds_path, 'w+') as f:
         content = datastore_template(data)
         f.write(content)
@@ -34,4 +38,4 @@ def generate(workspace="geoserver/data/workspaces/osm"):
     ]
 
     for l in osm_layers:
-        r = make_feature(workspace, data, l['layer'], l['style'].capitalize() + 'CssStyle')
+        r = make_feature(dir_path, data, l['layer'], l['style'].capitalize() + 'CssStyle')

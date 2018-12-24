@@ -84,18 +84,18 @@ def make_layergroup(base_dir, data, layers, type_name):
         f.write(content)
 
 
-def get_data(db_name='ott', schema='TRIMET', user='ott'):
+def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True):
     v = {
         'db_name': db_name,
         'schema': schema,
         'user':  user,
-        'namespace': schema.capitalize() + 'Namespace',
-        'workspace': schema.capitalize() + 'Workspace',
+        'namespace': db_name.capitalize() + 'Namespace',
+        'workspace': db_name.capitalize() + 'Workspace',
         'store_id': "{}-{}-datastore".format(db_name, schema),
-        'minx': -123.1,
-        'maxx': -121.1,
-        'miny': 44.0,
-        'maxy': 47.0,
+        'minx': -123.1 if is_LatLon else -13703429.32,
+        'maxx': -121.1 if is_LatLon else -13480790.34,
+        'miny':   44.0 if is_LatLon else   5465442.18,
+        'maxy':   47.0 if is_LatLon else   5942074.07,
     }
     return v
 
