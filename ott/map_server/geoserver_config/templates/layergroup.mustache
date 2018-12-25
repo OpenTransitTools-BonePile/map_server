@@ -4,9 +4,11 @@
   <mode>SINGLE</mode>
   <title>{{type}}</title>
   <abstractTxt>{{type}}</abstractTxt>
+  {{#workspace}}
   <workspace>
-    <id>{{workspace}}</id>
+      <id>{{workspace}}</id>
   </workspace>
+  {{/workspace}}
   <publishables>
     {{#layers}}
     <published type="layer">
