@@ -19,6 +19,7 @@ cache_data
 *.pid
 *.sld
 **/styles/*.xml
+geoserver/data/layergroups
 geoserver/data/workspaces/osm/*/
 geoserver/data/workspaces/osm/datastore.xml
 geoserver-*/
