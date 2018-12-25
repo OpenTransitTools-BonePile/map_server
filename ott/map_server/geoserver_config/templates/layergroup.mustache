@@ -11,16 +11,14 @@
   {{/workspace}}
   <publishables>
     {{#layers}}
-    <published type="layer">
+    <published type="{{published_type}}{{^published_type}}layer{{/published_type}}">
       <id>{{layer_id}}</id>
     </published>
     {{/layers}}
   </publishables>
   <styles>
     {{#layers}}
-    <style>
-      <id>{{style_id}}</id>
-    </style>
+    <style>{{#style_id}}<id>{{style_id}}</id>{{/style_id}}</style>
     {{/layers}}
   </styles>
   <bounds>

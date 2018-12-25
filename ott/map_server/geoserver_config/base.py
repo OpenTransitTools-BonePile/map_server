@@ -85,13 +85,11 @@ def make_layergroup(base_dir, data, layers, type_name):
         f.write(content)
 
 
-def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True):
+def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True, do_namepace=True):
     v = {
         'db_name': db_name,
         'schema': schema,
         'user':  user,
-        'namespace': db_name.capitalize() + 'Namespace',
-        'workspace': db_name.capitalize() + 'Workspace',
         'store_id': "{}-{}-datastore".format(db_name, schema),
         'minx': -123.1 if is_LatLon else -13703429.32,
         'maxx': -121.1 if is_LatLon else -13480790.34,
@@ -99,15 +97,31 @@ def get_data(db_name='ott', schema='TRIMET', user='ott', is_LatLon=True):
         'maxy':   47.0 if is_LatLon else   5942074.07,
         'epsg':   4326 if is_LatLon else 3857
     }
+    if do_namepace:
+        v['namespace'] = db_name.capitalize() + 'Namespace'
+        v['workspace'] = db_name.capitalize() + 'Workspace'
+
     return v
 
 
 def generate_geoserver_config():
+    # step 1: args
     args = osm_cmdline.geoserver_parser()
+    do_layergroup = not args.ignore_layergroups
+    data_dir = args.data_dir if args.data_dir else "geoserver/data"
 
+    # step 2: layer gen
     from . import osm_config
     from . import style_config
     from . import transit_config
-    transit_config.generate(gen_layergroup=not args.ignore_layergroups)
-    style_config.generate()
-    osm_config.generate(gen_layergroup=not args.ignore_layergroups)
+    style_config.generate(data_dir)
+    transit_config.generate(data_dir, gen_layergroup=do_layergroup)
+    osm_config.generate(data_dir, gen_layergroup=do_layergroup)
+
+    # step 3: create a new layergroup with both map and transit routes
+    if do_layergroup:
+        # FYI: very important to get the details (layer group ids correct) below, else GS will throw exceptions
+        d = get_data(is_LatLon=False, do_namepace=False)
+        d['published_type'] = "layerGroup"
+        l = [{'layer_id':'osm-map-layergroup'}, {'layer_id':'ott-routes-layergroup'}]
+        make_layergroup(data_dir, d, l, 'transit-map')
