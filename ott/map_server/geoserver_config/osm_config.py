@@ -1,4 +1,5 @@
 from .base import *
+from .style_config import make_id
 
 
 def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True):
@@ -43,9 +44,9 @@ def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True
         "buildings",
     ]
     for l in osm_layers:
-        for c in ['color', 'gray']:
-            r = make_feature(workspace_path, data, l, l.capitalize() + 'CssStyle')
-            layer_group.append(r)
+        style_id = make_id(l, color="color")
+        r = make_feature(workspace_path, data, l, style_id)
+        layer_group.append(r)
 
     if gen_layergroup:
         data['workspace'] = None

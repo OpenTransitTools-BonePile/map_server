@@ -1,5 +1,6 @@
 from ott.utils import gtfs_utils
 from .base import *
+from .style_config import make_id
 
 
 def generate(data_dir="geoserver/data", workspace="ott", gen_layergroup=True):
@@ -27,8 +28,10 @@ def generate(data_dir="geoserver/data", workspace="ott", gen_layergroup=True):
             f.write(content)
 
         # step 4: make stop and route feature layers
-        r = make_feature(dir_path, data, 'routes', 'RoutesCssStyle')
-        s = make_feature(dir_path, data, 'stops',  'StopsCssStyle')
+        routes_style_id = make_id('routes')
+        stops_style_id = make_id('stops')
+        r = make_feature(dir_path, data, 'routes', routes_style_id)
+        s = make_feature(dir_path, data, 'stops',  stops_style_id)
         routes_layers.append(r)
         stops_layers.append(s)
 
