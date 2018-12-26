@@ -1,10 +1,10 @@
 * { 
-  stroke: #C5AB8E;
-  font-family: "Dialog.plain";
-  stroke-opacity: 0.6;
+  font-family: "Copperplate";
   font-weight: normal;
+  font-style: normal;
+  stroke: #C5AB8E;
   font-fill: #777;
-  font-style: normal; 
+  stroke-opacity: 0.6;
   label-anchor: 0.5 0;
   label-offset: 0 5;
   -gt-label-max-displacement: 600;

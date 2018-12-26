@@ -1,9 +1,7 @@
 * { 
-  font-fill: #484848; 
-  font-family: "DejaVu Sans";
+  font-family: "GillSans";
   font-weight: normal;
-  halo-color: white;
-  halo-radius: 1;
+  font-fill: #484848;
   -gt-label-follow-line: true;
   -gt-label-max-angle-delta: 90;
   -gt-label-max-displacement: 400;
@@ -12,32 +10,32 @@
 }
 
 [@scale < 50001] [@scale > 25001] {
-  stroke: #c2c2c2;
+  stroke: #dad7d6;
   stroke-opacity: 0.5;
   stroke-width: 0.1;
 }
 
 [@scale < 25001] [@scale > 10001] {
-  stroke: #c2c2c2, white;
+  stroke: #8f8f8f, #dad7d6;
   stroke-opacity: 0.5, 1;
   stroke-width: 2, 1;
   z-index: 0, 1;
 }
 
 [@scale < 10001] [@scale > 5001]{
-  stroke: #c2c2c2, white;
+  stroke: #8f8f8f, #dad7d6;
   stroke-opacity: 0.5, 1;
-  stroke-width: 5, 3;
+  stroke-width: 6, 4;
   z-index: 0, 1;
   label: [name];
-  font-size: 7;
+  font-size: 8;
 }
 
 [@scale < 5001] {
-  stroke: #c2c2c2, white;
+  stroke: #8f8f8f, #dad7d6;
   stroke-opacity: 0.5, 1;
-  stroke-width: 8, 6;
+  stroke-width: 10, 8;
   z-index: 0, 1;
   label: [name];
-  font-size: 9;
+  font-size: 10;
 }
