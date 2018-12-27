@@ -20,19 +20,19 @@ def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True
 
     # step 3: make layers
     osm_layers = [
+        "county",
+        "country",
+        "settlements",
+        "district",
+        "subdistrict",
+        "boundary",
+
         "forestpark",
         "amenity",
 
         "water",
         "lakes",
         "waterway",
-
-        "boundary",
-        "settlements",
-        "subdistrict",
-        "district",
-        "country",
-        "county",
 
         "rails",
         "motorway",
