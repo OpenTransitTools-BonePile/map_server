@@ -14,7 +14,7 @@
 }
 
 [@scale < 200001] [@scale > 100001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke:
   stroke-width: 3, 2;
   stroke-opacity: 0.5, 1;
   z-index: 0, 1;
@@ -23,7 +23,7 @@
 }
 
 [@scale < 100001] [@scale > 50001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke:
   stroke-width: 3, 2;
   stroke-opacity: 0.5, 1;
   z-index: 0, 1;
@@ -32,7 +32,7 @@
 }
 
 [@scale < 50001] [@scale > 25001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke: #dad7d6, #FFFFFF;
   stroke-width: 4, 3;
   stroke-opacity: 0.5, 1;
   z-index: 0, 1;
@@ -41,7 +41,7 @@
 }
 
 [@scale < 25001] [@scale > 10001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke: #dad7d6, #FFFFFF;
   stroke-width: 7, 6;
   stroke-opacity: 0.5, 1;
   z-index: 0, 1;
@@ -50,7 +50,7 @@
 }
 
 [@scale < 10001] [@scale > 5001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke: #dad7d6, #FFFFFF;
   stroke-width: 8, 7;
   stroke-opacity: 0.8, 1;
   z-index: 0, 1;
@@ -59,7 +59,7 @@
 }
 
 [@scale < 5001] {
-  stroke: #8f8f8f, #f6cb8c;
+  stroke: #dad7d6, #FFFFFF;
   stroke-width: 14, 12;
   stroke-opacity: 0.8, 1;
   z-index: 0, 1;
