@@ -66,6 +66,14 @@ def make_feature(base_dir, data, type_name, style_id):
     return {'layer_id': data['layer_id'], 'style_id': style_id}
 
 
+def change_style_color(layer_style_list, frm="Color", to="Gray"):
+    """ for layergroups, we have a layer/style paried list ... this routine will rename the style items """
+    # import pdb; pdb.set_trace()
+    for l in layer_style_list:
+        s = l['style_id'].replace(frm, to, 1)
+        l['style_id'] = s
+
+
 def make_layergroup(base_dir, data, layers, type_name):
     """
     make layergroup
@@ -125,3 +133,6 @@ def generate_geoserver_config():
         d['published_type'] = "layerGroup"
         l = [{'layer_id':'osm-map-layergroup'}, {'layer_id':'ott-routes-layergroup'}]
         make_layergroup(data_dir, d, l, 'transit-map')
+
+        l = [{'layer_id':'osm-map-gray-layergroup'}, {'layer_id':'ott-routes-layergroup'}]
+        make_layergroup(data_dir, d, l, 'transit-map-gray')

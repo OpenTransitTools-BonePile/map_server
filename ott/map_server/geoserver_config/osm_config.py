@@ -51,3 +51,7 @@ def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True
     if gen_layergroup:
         data['workspace'] = None
         make_layergroup(data_dir, data, layer_group, type_name='map')
+
+        # import pdb; pdb.set_trace()
+        change_style_color(layer_group, "Color", "Gray")
+        make_layergroup(data_dir, data, layer_group, type_name='map-gray')
