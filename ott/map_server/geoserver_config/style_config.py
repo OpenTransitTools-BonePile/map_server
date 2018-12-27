@@ -35,15 +35,16 @@ def generate(data_dir="geoserver/data"):
         # step 3: loop thru all the .css files in each dir
         for s in file_utils.listdir(dir):
             if s.endswith(".css"):
-                name = s[:-4]
+                style_name = s[:-4]
                 css_path = os.path.join(dir, s)  # build path to .css file
+                full_name = color + sep + style_name  # <color>_<name>
 
                 # step 4: write out the .xml GS config file
-                cfg_path = os.path.join(data_dir, 'styles', color + sep + name + ".xml")
+                cfg_path = os.path.join(data_dir, 'styles', full_name + ".xml")
                 with open(cfg_path, 'w+') as f:
                     data = {
-                        'id': make_id(name, color),
-                        'name': name,
+                        'id': make_id(style_name, color),
+                        'name': full_name,
                         'path': css_path,
                         'type': 'css'
                     }
