@@ -36,7 +36,7 @@ def generate(data_dir="geoserver/data"):
         for s in file_utils.listdir(dir):
             if s.endswith(".css"):
                 style_name = s[:-4]
-                css_path = os.path.join(dir, s)  # build path to .css file
+                css_path = os.path.join(css_dir, s)  # build sub-path to .css files under 'styles' dir
                 full_name = color + sep + style_name  # <color>_<name>
 
                 # step 4: write out the .xml GS config file
