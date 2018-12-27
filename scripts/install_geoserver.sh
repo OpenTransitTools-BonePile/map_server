@@ -13,6 +13,10 @@ fi
 unzip geoserver.zip
 mv geoserver-2.14-SNAPSHOT geoserver
 unzip css.zip -d geoserver/webapps/geoserver/WEB-INF/lib/
+rm -rf geoserver/data
+rm -rf geoserver/data_dir
 
+echo "cd geoserver"
+echo "bin/startup.sh > run.out &"
 echo "export GEOSERVER_DATA_DIR=/java/DEV/map_server/geoserver/data"
 echo "cat \$GEOSERVER_DATA_DIR/security/masterpw.info"
