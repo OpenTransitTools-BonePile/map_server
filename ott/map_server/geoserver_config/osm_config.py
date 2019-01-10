@@ -3,7 +3,9 @@ from .style_config import make_id
 
 
 def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True):
-    """ gen geoserver stuff
+    """
+    gen geoserver stuff
+    :see: https://github.com/fegyi001/osmgwc#preview-the-layer-group
     """
     layer_group = []
 
