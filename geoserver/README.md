@@ -25,3 +25,7 @@ run:
   1. bin/startup.sh 
   1. cat $GEOSERVER_DATA_DIR/security/masterpw.info
   
+
+Notes:
+  1. ttf fonts: https://github.com/potyt/fonts
+  1. ...
