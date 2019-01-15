@@ -28,4 +28,5 @@ run:
 
 Notes:
   1. ttf fonts: https://github.com/potyt/fonts
-  1. ...
+  1. may have to put fonts into JVM or System directories.
+  1. https://gis.stackexchange.com/questions/30151/how-do-i-use-use-custom-fonts-for-labelling-in-geoserver
