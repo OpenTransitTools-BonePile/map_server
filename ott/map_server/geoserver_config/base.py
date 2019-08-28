@@ -1,41 +1,6 @@
 import os
-#from mustache import template
-from pystache import template
 from ott.utils import file_utils
 from ott.utils.parse.cmdline import osm_cmdline
-
-
-template_dir = 'ott/map_server/geoserver_config/templates/'
-
-
-@template(template_dir + 'stores.mustache')
-def datastore_template(data):
-    """ call the stores template"""
-    return data
-
-
-@template(template_dir + 'style_config.mustache')
-def style_config_template(data):
-    """ call the style config template"""
-    return data
-
-
-@template(template_dir + 'featuretype.mustache')
-def featuretype_template(data):
-    """ call the featuretype template"""
-    return data
-
-
-@template(template_dir + 'layer.mustache')
-def layer_template(data):
-    """ call the layer template"""
-    return data
-
-
-@template(template_dir + 'layergroup.mustache')
-def layergroup_template(data):
-    """ call the layergroup template"""
-    return data
 
 
 def make_feature(base_dir, data, type_name, style_id):
