@@ -1,5 +1,6 @@
 import pystache
 import os
+import inspect
 import logging
 log = logging.getLogger(__file__)
 
@@ -25,7 +26,7 @@ class Template(object):
     @classmethod
     def render_templates_dir(cls, template, content):
         """ treat template as a template in this 'templates' directory """
-        dir_path = os.path.dirname(os.path.realpath(__file__))
+        dir_path = os.path.dirname(inspect.getfile(cls))
         ret_val = cls.render_template_file(os.path.join(dir_path, template), content)
         return ret_val
 
