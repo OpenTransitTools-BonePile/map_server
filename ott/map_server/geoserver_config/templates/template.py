@@ -4,7 +4,7 @@ import logging
 log = logging.getLogger(__file__)
 
 
-class Templates(object):
+class Template(object):
     renderer = pystache.Renderer()
 
     @classmethod
@@ -52,20 +52,14 @@ class Templates(object):
         return ret_val
 
 
-""" TODO -- not sure what TemplateSpec might be able to do, but adding this here as a research todo item ... """
-from pystache import TemplateSpec
-class FeatureType(TemplateSpec):
-    pass
-
-
 def main():
-    # bin/python ott/map_server/geoserver_config/templates/views.py
+    # bin/python ott/map_server/geoserver_config/templates/template.py
 
     data = {'id': 'FX', 'name': 'Frank X', 'type': 'sub-human', 'path': 'crooked'}
-    #p = Templates.render('style_config', data)
-    #p = Templates.render('style_config.mustache', data)
-    #p = Templates.render('ott/map_server/geoserver_config/templates/style_config', data)
-    p = Templates.render('id {{id}} ... name {{name}}', data)
+    #p = Template.render('style_config', data)
+    #p = Template.render('style_config.mustache', data)
+    #p = Template.render('ott/map_server/geoserver_config/templates/style_config', data)
+    p = Template.render('id {{id}} ... name {{name}}', data)
     print(p)
 
 

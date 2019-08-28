@@ -1,6 +1,32 @@
 import os
 from ott.utils import file_utils
 from ott.utils.parse.cmdline import osm_cmdline
+from .templates.template import Template
+
+
+def datastore_template(data):
+    """ call the stores template"""
+    return Template.render('stores.mustache', data)
+
+
+def style_config_template(data):
+    """ call the style config template"""
+    return Template.render('style_config.mustache', data)
+
+
+def featuretype_template(data):
+    """ call the featuretype template"""
+    return Template.render('feature_type.mustache', data)
+
+
+def layer_template(data):
+    """ call the layer template"""
+    return Template.render('layer.mustache', data)
+
+
+def layergroup_template(data):
+    """ call the layergroup template"""
+    return Template.render('layer_group.mustache', data)
 
 
 def make_feature(base_dir, data, type_name, style_id):
