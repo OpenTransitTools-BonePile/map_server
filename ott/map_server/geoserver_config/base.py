@@ -1,5 +1,6 @@
 import os
-from mustache import template
+#from mustache import template
+from pystache import template
 from ott.utils import file_utils
 from ott.utils.parse.cmdline import osm_cmdline
 
