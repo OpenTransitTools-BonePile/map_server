@@ -1,32 +1,11 @@
-import os
 from ott.utils import file_utils
 from ott.utils.parse.cmdline import osm_cmdline
 from .templates.template import Template
 
+import os
+import logging
+log = logging.getLogger(__file__)
 
-def datastore_template(data):
-    """ call the stores template"""
-    return Template.render('stores.mustache', data)
-
-
-def style_config_template(data):
-    """ call the style config template"""
-    return Template.render('style_config.mustache', data)
-
-
-def featuretype_template(data):
-    """ call the featuretype template"""
-    return Template.render('feature_type.mustache', data)
-
-
-def layer_template(data):
-    """ call the layer template"""
-    return Template.render('layer.mustache', data)
-
-
-def layergroup_template(data):
-    """ call the layergroup template"""
-    return Template.render('layer_group.mustache', data)
 
 
 def make_feature(base_dir, data, type_name, style_id):
@@ -45,14 +24,14 @@ def make_feature(base_dir, data, type_name, style_id):
     data['featuretype_id'] = "{}-{}-{}-featuretype".format(data['db_name'], data['schema'], type_name)
     type_path = os.path.join(feature_path, 'featuretype.xml')
     with open(type_path, 'w+') as f:
-        content = featuretype_template(data)
+        content = Template.feature_type(data)
         f.write(content)
 
     # step 4: add layer.xml for this feature
     data['layer_id'] = "{}-{}-{}-layer".format(data['db_name'], data['schema'], type_name)
     layer_path = os.path.join(feature_path, 'layer.xml')
     with open(layer_path, 'w+') as f:
-        content = layer_template(data)
+        content = Template.layer(data)
         f.write(content)
 
     return {'layer_id': data['layer_id'], 'style_id': style_id}
@@ -81,7 +60,7 @@ def make_layergroup(base_dir, data, layers, type_name):
     # step 3: add layer.xml for this feature
     xml_path = os.path.join(layergroup_path, type_name + '.xml')
     with open(xml_path, 'w+') as f:
-        content = layergroup_template(data)
+        content = Template.layer_group(data)
         f.write(content)
 
 

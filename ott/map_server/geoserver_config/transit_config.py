@@ -1,6 +1,12 @@
 from ott.utils import gtfs_utils
-from .base import *
+from ott.utils import file_utils
 from .style_config import make_id
+from .templates.template import Template
+from .base import get_data, make_layergroup, make_feature
+
+import os
+import logging
+log = logging.getLogger(__file__)
 
 
 def generate(data_dir="geoserver/data", workspace="ott", gen_layergroup=True):
@@ -24,7 +30,7 @@ def generate(data_dir="geoserver/data", workspace="ott", gen_layergroup=True):
         # step 3: make the datastore config for the source
         ds_path = os.path.join(dir_path, 'datastore.xml')
         with open(ds_path, 'w+') as f:
-            content = datastore_template(data)
+            content = Template.data_store(data)
             f.write(content)
 
         # step 4: make stop and route feature layers

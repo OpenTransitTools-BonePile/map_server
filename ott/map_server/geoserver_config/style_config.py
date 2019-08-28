@@ -1,4 +1,9 @@
-from .base import *
+from ott.utils import file_utils
+from .templates.template import Template
+
+import os
+import logging
+log = logging.getLogger(__file__)
 
 
 def make_id(name, color=None):
@@ -48,5 +53,5 @@ def generate(data_dir="geoserver/data"):
                         'path': css_path,
                         'type': 'css'
                     }
-                    content = style_config_template(data)
+                    content = Template.style_config(data)
                     f.write(content)

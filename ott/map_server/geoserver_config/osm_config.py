@@ -1,5 +1,11 @@
-from .base import *
+from ott.utils import file_utils
 from .style_config import make_id
+from .templates.template import Template
+from .base import get_data, make_layergroup, make_feature, change_style_color
+
+import os
+import logging
+log = logging.getLogger(__file__)
 
 
 def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True):
@@ -17,7 +23,7 @@ def generate(data_dir="geoserver/data", workspace="osm/osm", gen_layergroup=True
     ds_path = os.path.join(workspace_path, 'datastore.xml')
     data = get_data('osm', 'osm', is_LatLon=False)
     with open(ds_path, 'w+') as f:
-        content = datastore_template(data)
+        content = Template.data_store(data)
         f.write(content)
 
     # step 3: make layers
