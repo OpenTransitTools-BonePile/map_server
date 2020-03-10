@@ -1,4 +1,4 @@
-VER=2.15
+VER=2.16
 
 if [ -d "geoserver" ];
 then
