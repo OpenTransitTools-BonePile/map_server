@@ -38,9 +38,9 @@ done
 
 rm -rf geoserver/data
 rm -rf geoserver/data_dir
-if [ ! -d ".git/" ]; then
-  #git restore -s@ -SW  -- geoserver
-  #git update-index --assume-unchanged geoserver/data/global.xml
+if [ -d ".git/" ]; then
+  git restore -s@ -SW  -- geoserver
+  git update-index --assume-unchanged geoserver/data/*.xml
 fi
 echo "cd geoserver"
 echo "bin/startup.sh > run.out &"
