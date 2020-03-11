@@ -11,7 +11,7 @@ requires = [
     'pystache',
 
     'MapProxy',
-    'pyproj',
+    'pyproj<=2.2.5',
 
     'pyramid',
     'pyramid_tm',
