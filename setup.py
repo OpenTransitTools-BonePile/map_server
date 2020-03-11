@@ -10,8 +10,13 @@ requires = [
     'ott.utils',
     'pystache',
 
+
     'MapProxy',
-    'pyproj<=2.2.5',
+
+    # added Nov 2019 ... 'venusian==3.0.0' is python 3.x, so won't work with Py 2.7
+    'pillow<7.0.0',
+    'pyproj<2.2.5',
+    'venusian==1.2.0',
 
     'pyramid',
     'pyramid_tm',
