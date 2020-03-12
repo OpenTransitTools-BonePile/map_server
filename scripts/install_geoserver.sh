@@ -42,7 +42,13 @@ if [ -d ".git/" ]; then
   git restore -s@ -SW  -- geoserver
   git update-index --assume-unchanged geoserver/data/*.xml
 fi
+
+
+echo "**** DO THIS TO GET geoserver UP & RUNNING ****"
+echo "bin/generate_geoserver_config"
 echo "cd geoserver"
-echo "bin/startup.sh > run.out &"
-echo "export GEOSERVER_DATA_DIR=/java/DEV/map_server/geoserver/data"
+echo "emacs server.ini ## change port from 8080, ala 10101 on maps7 "
+echo "export GEOSERVER_DATA_DIR=$PWD/geoserver/data"
 echo "cat \$GEOSERVER_DATA_DIR/security/masterpw.info"
+echo "nohup bin/startup.sh > logs/run.out &"
+echo "***********************************************"
