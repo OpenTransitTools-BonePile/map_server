@@ -1,9 +1,7 @@
-VER=2.16
+VER=2.17
 
-EXT_PLUGINS="imagemosaic-jdbc-plugin css-plugin vectortiles-plugin"
-
-# !!! NOTE: mbstyle-plugin.zip moves to EXT_ in 2.17
-COM_PLUGINS="mbstyle-plugin"
+EXT_PLUGINS="imagemosaic-jdbc-plugin css-plugin vectortiles-plugin mbstyle-plugin"
+COM_PLUGINS=""
 
 if [ -d "geoserver" ];
 then
@@ -43,12 +41,11 @@ if [ -d ".git/" ]; then
   git update-index --assume-unchanged geoserver/data/*.xml
 fi
 
+sleep 2
+bin/generate_geoserver_config
 
 echo "**** DO THIS TO GET geoserver UP & RUNNING ****"
-echo "bin/generate_geoserver_config"
-echo "cd geoserver"
-echo "emacs server.ini ## change port from 8080, ala 10101 on maps7 "
 echo "export GEOSERVER_DATA_DIR=$PWD/geoserver/data"
-echo "cat \$GEOSERVER_DATA_DIR/security/masterpw.info"
+echo "cd geoserver"
 echo "nohup bin/startup.sh > logs/run.out &"
 echo "***********************************************"
