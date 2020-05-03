@@ -26,12 +26,11 @@ then
     done
 fi
 
-unzip geoserver.zip
-mv geoserver-$VER-SNAPSHOT geoserver
+unzip geoserver.zip -d ./geoserver/
 
 for p in $EXT_PLUGINS $COM_PLUGINS
 do
-  unzip $p -d geoserver/webapps/geoserver/WEB-INF/lib/
+  unzip -o $p -d ./geoserver/webapps/geoserver/WEB-INF/lib/
 done
 
 rm -rf geoserver/data
@@ -42,6 +41,7 @@ if [ -d ".git/" ]; then
 fi
 
 sleep 2
+buildout
 bin/generate_geoserver_config
 
 echo "**** DO THIS TO GET geoserver UP & RUNNING ****"
