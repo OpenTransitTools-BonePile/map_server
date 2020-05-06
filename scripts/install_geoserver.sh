@@ -43,8 +43,12 @@ fi
 sleep 2
 buildout
 bin/generate_geoserver_config
+bin/run_jetty_config
 
 echo "**** DO THIS TO GET geoserver UP & RUNNING ****"
+echo
+echo "bin/run.sh &"
+echo "    OR"
 echo "export GEOSERVER_DATA_DIR=$PWD/geoserver/data"
 echo "cd geoserver"
 echo "nohup bin/startup.sh > logs/run.out &"
