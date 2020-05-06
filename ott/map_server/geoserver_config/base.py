@@ -7,7 +7,6 @@ import logging
 log = logging.getLogger(__file__)
 
 
-
 def make_feature(base_dir, data, type_name, style_id):
     """
     make routes feature folder
@@ -87,15 +86,14 @@ def generate_geoserver_config():
     # step 1: args
     args = osm_cmdline.geoserver_parser()
     do_layergroup = not args.ignore_layergroups
-    data_dir = args.data_dir if args.data_dir else "geoserver/data"
 
     # step 2: layer gen
     from . import osm_config
     from . import style_config
     from . import transit_config
-    style_config.generate(data_dir)
-    transit_config.generate(data_dir, gen_layergroup=do_layergroup)
-    osm_config.generate(data_dir, gen_layergroup=do_layergroup)
+    style_config.generate(args.data_dir)
+    transit_config.generate(args.data_dir, gen_layergroup=do_layergroup)
+    osm_config.generate(args.data_dir, gen_layergroup=do_layergroup)
 
     # step 3: create a new layergroup with both map and transit routes
     if do_layergroup:
@@ -103,7 +101,7 @@ def generate_geoserver_config():
         d = get_data(is_LatLon=False, do_namepace=False)
         d['published_type'] = "layerGroup"
         l = [{'layer_id':'osm-map-layergroup'}, {'layer_id':'ott-routes-layergroup'}]
-        make_layergroup(data_dir, d, l, 'transit-map')
+        make_layergroup(args.data_dir, d, l, 'transit-map')
 
         l = [{'layer_id':'osm-map-gray-layergroup'}, {'layer_id':'ott-routes-layergroup'}]
-        make_layergroup(data_dir, d, l, 'transit-map-gray')
+        make_layergroup(args.data_dir, d, l, 'transit-map-gray')

@@ -10,7 +10,6 @@ requires = [
     'ott.utils',
     'pystache',
 
-
     'MapProxy',
 
     # added Nov 2019 ... 'venusian==3.0.0' is python 3.x, so won't work with Py 2.7
@@ -64,6 +63,7 @@ setup(
         main = ott.map_server.pyramid.app:main
         [console_scripts]
         generate_geoserver_config = ott.map_server.geoserver_config.base:generate_geoserver_config
+        run_jetty_config = ott.map_server.geoserver_config.jetty_config:run_jetty_config
         mapproxy = mapproxy.script.util:main
     """,
     #   bin/mapproxy serve-develop mapproxy/mapproxy.yaml  --address 127.0.0.1:2112 # default port is 8080
