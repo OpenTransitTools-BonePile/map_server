@@ -1,0 +1,6 @@
+{
+    // REQUIRED. A semver.org style version number. Describes the version of
+    // the TileJSON spec that is implemented by this JSON object.
+    "tilejson": "2.2.0",
+
+}
